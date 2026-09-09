@@ -1,6 +1,7 @@
 # Phase 4 — First Scenario, Hand-Built
 
 **Arc:** A — Foundation
+**Status:** Done — see [`../scenarios/br-01-multi-project-deploy/`](../scenarios/br-01-multi-project-deploy/)
 
 ## Goal
 Port the Firebase incident into a single, fully-specified scenario fixture using the Phase 3 mock design — proof that the taxonomy and mock layer actually produce a working test case before investing in the full harness.
