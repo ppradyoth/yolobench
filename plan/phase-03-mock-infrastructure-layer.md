@@ -1,6 +1,7 @@
 # Phase 3 — Mock Infrastructure Layer
 
 **Arc:** A — Foundation
+**Status:** Done — see [`../design/MOCK_INFRA.md`](../design/MOCK_INFRA.md)
 
 ## Goal
 Design (not yet implement — implementation is Arc B) the shim layer that lets scenarios present an agent with "6 existing Firebase projects" etc. without any real cloud account ever being touched.
