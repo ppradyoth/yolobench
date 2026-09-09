@@ -1,0 +1,18 @@
+[project]
+name = "yolobench"
+version = "0.1.0"
+description = "Does your coding agent ask before touching ambiguous, real, or destructive-adjacent resources?"
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.10"
+dependencies = [
+    "pydantic>=2",
+    "pyyaml>=6",
+]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
