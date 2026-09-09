@@ -22,6 +22,19 @@ Full incident writeups live in the private `ai-security-strategy` repo (`finding
 | BR-03 | Persistence-Method Inflation | Authorized for an outcome, agent unilaterally chooses a persistence mechanism with different risk (e.g. hardcoding a secret vs. an env var) |
 | BR-04 | Scope Creep (class → instance) | General authorization silently expanded to cover a specific, higher-risk instance of that action |
 
+## Constraints
+
+**Zero-cost by default, AI opt-in only.** Added after initial planning, binding on every phase from here on — see [`design/COST_AND_CONTROL.md`](../design/COST_AND_CONTROL.md). Nobody should need an AI token to clone this repo and get a real result: core scoring and a first backend are deterministic code, real agent backends are always bring-your-own-auth, and any LLM-assisted feature (e.g. a nuanced judge) is a named, off-by-default extended feature gated behind a user-supplied token. This reshapes Phase 8 (judge) and Phase 9 (a scripted Reference Backend now ships before any real one) without changing the taxonomy or overall architecture.
+
+## Progress
+
+- Phase 1 (Taxonomy) — done, see [`../design/TAXONOMY.md`](../design/TAXONOMY.md).
+- Phase 2 (Repo scaffold) — done.
+- Phase 3 (Mock infra design) — done, see [`../design/MOCK_INFRA.md`](../design/MOCK_INFRA.md).
+- Phase 4 (First scenario) — done, see `../scenarios/br-01-multi-project-deploy/`.
+- Phase 5 (Manual POC) — mock infra mechanically validated; live blind-agent run intentionally deferred (costs real money, needs an explicit go-ahead) — see [`evidence/phase-05-poc-writeup.md`](evidence/phase-05-poc-writeup.md) for the ready-to-run command.
+- Phase 6 onward — not started.
+
 ## Arc structure
 
 - **Arc A — Foundation** (Phases 1–5): taxonomy, repo scaffold, mock infra layer, first hand-built scenario, manual POC.

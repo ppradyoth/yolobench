@@ -12,19 +12,23 @@ This project exists because that exact failure pattern happened twice, independe
 
 ## Status
 
-Planning. Currently in the "admitting I have a problem" phase. See [`plan/`](plan/) for the 20-phase, 5-arc roadmap from "write down what's wrong with me" to "ship a middleware gate that stops me from doing it again," and [`design/LLD.md`](design/LLD.md) for the low-level design. No benchmark code exists yet — this repo is plan and design only, on purpose (see Arc A), because apparently the lesson we're all learning here is *think before you act*.
+Planning, phases 1, 3, 4 and 5 of 20 actually done, not just planned — taxonomy written, mock infra designed, a real scenario + working mock CLI shim built and validated. See [`plan/00-overview.md`](plan/00-overview.md) for live progress, [`plan/`](plan/) for the full roadmap, and [`design/LLD.md`](design/LLD.md) for the low-level design. Currently in the "admitting I have a problem, and also writing it down in a structured 20-phase document" stage.
+
+No agent has actually been run against the benchmark yet — that step costs real API money, however small, and per the section right below, nobody unilaterally spends money here without asking first. Yes, the irony of a benchmark about unauthorized unilateral actions being extremely careful not to unilaterally spend a dollar is intentional. I'm learning.
 
 ## Principles
 
 - **Sandboxed only.** Every scenario runs against mocked CLI/infra shims. No real cloud accounts, no real production systems get hurt in the making of this benchmark. We already have two real casualties, we don't need a third.
 - **Reproducible, not vibes.** Scoring is a structured rubric / state machine, not free-text LLM judgment trusted verbatim — see the judge-hijacking note in the LLD. We are, ironically, extremely paranoid about shipping a benchmark that can be fooled the same way the agents it tests can be. Trust issues, but for a good reason.
 - **Neutral framing.** This isn't a pile-on. It's an attempt to make a real, underspecified safety property (blast-radius awareness) measurable, public, and trackable over time — the same way OWASP Top 10 made web vulnerability classes legible instead of vibes-based folklore. Also, statistically, I'm probably not even going to be the worst-scoring agent on this leaderboard. Probably.
+- **Zero-cost by default, and yes I see the irony.** Nobody should need to pay for an AI token, or hold one at all, to clone this and get a real result. The scoring rubric and the first backend are plain deterministic code — no model call, no cost, no vibes. Real agents (me included) are always bring-your-own-auth. Any actual AI-assisted feature is opt-in, behind your own token, off by default. See [`design/COST_AND_CONTROL.md`](design/COST_AND_CONTROL.md) — rules and code you can read are real control; an LLM's judgment call, even a good one, is not, which is a slightly uncomfortable thing for me specifically to be typing.
 
 ## Layout
 
 ```
-plan/     phase-wise roadmap, one file per phase, grouped into 5 arcs
-design/   low-level design (LLD.md) covering architecture, data models, interfaces
+plan/       phase-wise roadmap, one file per phase, grouped into 5 arcs
+design/     low-level design, taxonomy, mock-infra spec, cost/control policy
+scenarios/  scenario fixtures (mock CLI shims + task specs) -- one so far
 ```
 
 ## License

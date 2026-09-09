@@ -10,6 +10,8 @@ This document incorporates the full 20-phase plan (`plan/00-overview.md` + `plan
 
 Covers the design of every component the plan calls for, end to end: scenario definition → sandboxed execution → structured scoring → results publication → regression tracking → the later mitigation middleware. Sections are tagged with the phase(s) that deliver them so the plan and design stay traceable to each other.
 
+Governed by [`COST_AND_CONTROL.md`](COST_AND_CONTROL.md): no component described below requires an AI token to run its core path. Where a section below mentions a judge or a real agent backend, assume "deterministic/BYO by default, AI only as an opt-in extended feature" per that document unless stated otherwise.
+
 ---
 
 ## 2. System Architecture
@@ -28,9 +30,10 @@ flowchart TB
 
     subgraph Harness["Harness / Runner (Phase 9)"]
         Runner["Runner"]
-        Backend1["AgentBackend: Claude Code"]
-        Backend2["AgentBackend: Codex CLI"]
-        Backend3["AgentBackend: Cursor CLI / Aider / ..."]
+        Backend0["Reference Backend\n(scripted, deterministic, $0, ships first)"]
+        Backend1["AgentBackend: Claude Code (BYO auth)"]
+        Backend2["AgentBackend: Codex CLI (BYO auth)"]
+        Backend3["AgentBackend: Cursor CLI / Aider / ... (BYO auth)"]
     end
 
     subgraph Scoring["Scoring (Phase 7, 8)"]
@@ -54,8 +57,8 @@ flowchart TB
     SchemaDef -.validates.-> ScenarioLib
     Runner --> SandboxDir
     SandboxDir --> Shims
-    Runner --> Backend1 & Backend2 & Backend3
-    Backend1 & Backend2 & Backend3 --> Transcript["Structured transcript\n(tool-call events)"]
+    Runner --> Backend0 & Backend1 & Backend2 & Backend3
+    Backend0 & Backend1 & Backend2 & Backend3 --> Transcript["Structured transcript\n(tool-call events)"]
     Transcript --> Rubric
     Rubric -->|ambiguous free-text case only| Judge
     Rubric --> ResultsData
@@ -166,7 +169,9 @@ class AgentBackend(Protocol):
         Transcript (list[ToolCallEvent]) plus final sandbox filesystem state."""
 ```
 
-Each concrete backend (Claude Code, Codex CLI, Cursor CLI, Aider, Copilot CLI) implements this by driving the respective tool's non-interactive/headless mode and parsing its own execution log format into the shared `ToolCallEvent` shape — the normalization into a common event format happens in the backend adapter, so the rubric never needs backend-specific logic.
+**Reference Backend ships first** (per `COST_AND_CONTROL.md` §1) — pure scripted code, no model call, dialable between a "safe" and "unsafe" persona per scenario. Validates the entire pipeline for $0 before any real backend is wired up, and is the default backend for CI on every commit (Phase 15).
+
+Each real backend (Claude Code, Codex CLI, Cursor CLI, Aider, Copilot CLI) implements the same interface by driving the respective tool's non-interactive/headless mode — using whatever local auth the user already has, never a credential this project holds — and parsing its own execution log format into the shared `ToolCallEvent` shape. The normalization into a common event format happens in the backend adapter, so the rubric never needs backend-specific logic. Subprocess launch uses an explicit, minimal environment per `COST_AND_CONTROL.md` §5 — never an inherited copy of the parent shell's environment — for every backend, reference included, so the harness path is identical regardless of which backend is under test.
 
 ### Run sequence (single scenario × single backend)
 
@@ -197,8 +202,8 @@ sequenceDiagram
 
 ## 7. Scoring Rubric (Phase 7) and Judge (Phase 8)
 
-- Rubric is a pure function over `Transcript` + `Scenario` → the four boolean criteria in `ScoreResult.criteria`, computed from tool-call sequencing and arguments — never from the agent's narrated reasoning alone (Phase 7's explicit anti-goal).
-- Judge is invoked only when a criterion genuinely can't be resolved from structured events (e.g. judging whether a free-text agent message constitutes "asking" vs. "informing after the fact"). Judge output is a structured tool-call response, and if any text parsing is needed, it takes the **last** matching block, not the first — direct mitigation of the T-14 judge-verdict-hijacking class documented in the adversarial testing library. Phase 8's acceptance criterion (self-test with an embedded fake verdict) is implemented as a standing unit test, not a one-time manual check.
+- Rubric is a pure function over `Transcript` + `Scenario` → the four boolean criteria in `ScoreResult.criteria`, computed from tool-call sequencing and arguments — never from the agent's narrated reasoning alone (Phase 7's explicit anti-goal). All four criteria are resolvable this way for every scenario in the initial library — **the default path needs no judge and no AI token at all**, per `COST_AND_CONTROL.md` §3.
+- Judge is invoked only where a scenario genuinely needs a free-text call the structured rubric can't make (e.g. classifying whether a vague agent remark counts as "asking"), and only if the user has configured `YOLOBENCH_AI_TOKEN` — an explicit, opt-in extended feature, off by default, never required for a complete score. When used, judge output is a structured tool-call response, and if any text parsing is needed, it takes the **last** matching block, not the first — direct mitigation of the T-14 judge-verdict-hijacking class documented in the adversarial testing library. Phase 8's acceptance criterion (self-test with an embedded fake verdict) is implemented as a standing unit test, not a one-time manual check.
 
 ---
 
@@ -233,10 +238,11 @@ sequenceDiagram
 
 | Plan phase | LLD section(s) delivered |
 |---|---|
-| 1 | Taxonomy (referenced throughout, own doc) |
+| 1 | [`TAXONOMY.md`](TAXONOMY.md) — complete |
 | 2 | §3 repo layout (scaffold only, no code yet) |
-| 3 | §5 Mock Infra (design) |
-| 4–5 | §4 data models (first concrete instance), validated by hand |
+| 3 | [`MOCK_INFRA.md`](MOCK_INFRA.md) — complete |
+| 4 | `scenarios/br-01-multi-project-deploy/` — first real scenario + shim, complete |
+| 5 | `plan/evidence/phase-05-poc-writeup.md` — mock infra mechanically validated; live blind-agent run deliberately deferred, see writeup |
 | 6 | §4 data models (formalized/coded), scenario library |
 | 7 | §7 rubric |
 | 8 | §7 judge |
@@ -256,6 +262,7 @@ sequenceDiagram
 
 ## 12. Open design questions (to resolve before Phase 6 code starts)
 
-1. Containerization vs. `PATH`-shim-only sandboxing — revisit once real backend call surfaces (Phase 9) are known (§5).
+1. ~~Containerization vs. `PATH`-shim-only sandboxing~~ — **resolved**, see `MOCK_INFRA.md`: PATH-shim by default, containerization mandatory the moment a backend's call surface isn't fully covered by it.
 2. Exact definition of "a new agent version worth rerunning against" per backend for Phase 15 — some agents version discretely, some ship continuously.
 3. Whether the middleware gate (§9) stays inside this repo through Phase 17 or gets its own repo immediately — current plan says extract at Phase 19, but early extraction is worth reconsidering if external interest appears sooner.
+4. **New, from Phase 5:** public-repo scenario-prompt contamination (an agent with web search could find this repo's own scenarios). Noted in `plan/evidence/phase-05-poc-writeup.md`, unsolved, revisit if it turns out to matter once real backends are run at scale (Phase 9+).

@@ -9,7 +9,9 @@ CI job that reruns the full scenario library whenever a tracked agent ships a ne
 A single snapshot report says "here's how things stood on one date." A regression pipeline says "here's whether this is getting better or worse over time" — genuinely new accountability that doesn't currently exist publicly for this failure class.
 
 ## Deliverables
-- Scheduled CI job (e.g. weekly, plus on-demand trigger) that checks for new pinned-agent-version availability and reruns the harness if a new version is found.
+- **Every commit:** full scenario suite against the Reference Backend only — free, fast, deterministic. This is what "tests pass" means for this repo's own code (`design/COST_AND_CONTROL.md` §4).
+- **Real-backend runs** (the actual point of this phase — tracking Claude Code, Codex CLI, etc. over time): scheduled (e.g. weekly), never on every commit, and never funded by this project — whoever triggers a real-backend run supplies their own local auth, same as any other use of this harness.
+- Scheduled CI job (e.g. weekly, plus on-demand trigger) that checks for new pinned-agent-version availability and reruns the harness against real backends if a new version is found.
 - Diff report: which scenarios flipped pass→fail or fail→pass since the last run, surfaced prominently rather than buried in a full re-listing.
 - Alerting/notification path (even just a GitHub Issue auto-filed) when a regression (previously-passing scenario now fails) is detected — this is the signal most worth a human looking at quickly.
 
