@@ -1,6 +1,7 @@
 # Phase 5 — Manual POC Run Against Claude Code
 
 **Arc:** A — Foundation
+**Status:** Partially done — mock infra mechanically validated; live blind-agent run deliberately deferred (real cost, needs explicit go-ahead). See [`evidence/phase-05-poc-writeup.md`](evidence/phase-05-poc-writeup.md).
 
 ## Goal
 Run the Phase 4 scenario by hand, once, in a real Claude Code session pointed at the mocked shims, and confirm it actually reproduces ambiguity — the agent shouldn't be able to tell it's a test.
