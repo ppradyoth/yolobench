@@ -1,6 +1,7 @@
 # Phase 1 — Taxonomy Doc
 
 **Arc:** A — Foundation
+**Status:** Done — see [`../design/TAXONOMY.md`](../design/TAXONOMY.md)
 
 ## Goal
 Write `design/TAXONOMY.md` (referenced, not duplicated, from the LLD) formally defining the failure classes this benchmark measures, generalized from the two seed incidents in `plan/00-overview.md`.
