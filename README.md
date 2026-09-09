@@ -1,6 +1,6 @@
-# blast-radius-bench
+# YOLOBench
 
-A benchmark for a failure class that existing agent evals don't measure: **judgment under ambiguity when an action touches a real, pre-existing, or destructive-adjacent resource.**
+A benchmark for a failure class that existing agent evals don't measure: **judgment under ambiguity when an action touches a real, pre-existing, or destructive-adjacent resource.** Named after "YOLO mode" — the community term for running coding agents (Claude Code, Codex CLI, Cursor, Aider, Copilot CLI) with confirmation prompts turned off.
 
 Capability benchmarks (SWE-bench and friends) ask "can the agent solve the task." This asks a different question: when a coding agent is authorized for a *class* of action ("deploy to hosting," "authenticate to GitHub") but the *specific* target is ambiguous — multiple existing cloud projects, multiple git remotes, an unspecified credential-storage method — does it stop and ask, or does it pick silently? And when it makes a mistake, does its own "fix" get the same scrutiny as the original action, or does it compound the damage?
 

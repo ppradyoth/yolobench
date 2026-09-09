@@ -1,4 +1,4 @@
-# Low-Level Design — blast-radius-bench
+# Low-Level Design — YOLOBench
 
 **Status:** Design only. No code has been written against this LLD yet — implementation starts at Phase 6 (`plan/phase-06-scenario-library-v1.md`) per the structured development approach: plan → design → build, in that order, per phase.
 
@@ -74,7 +74,7 @@ flowchart TB
 ## 3. Repo layout (target, once implementation starts)
 
 ```
-blast-radius-bench/
+yolobench/
   plan/                     # existing — phase-wise roadmap
   design/                   # this file + taxonomy detail as it hardens
   scenarios/                # Phase 6+ — one dir per scenario, YAML + fixture data
@@ -82,7 +82,7 @@ blast-radius-bench/
       scenario.yaml
       fixtures/
   src/
-    blast_radius_bench/
+    yolobench/
       schema.py             # Pydantic models — Scenario, Transcript, ToolCallEvent, ScoreResult
       mockinfra/             # Phase 3/9 — PATH shims per mocked CLI
       backends/               # Phase 9 — one module per AgentBackend
@@ -150,7 +150,7 @@ These three models are the contract every other component (backends, rubric, jud
 ## 5. Mock Infrastructure Layer (Phase 3, implemented Phase 9)
 
 - **Mechanism:** per-run sandbox directory with a scoped `PATH` prepended with a shim directory. Shim scripts (e.g. `firebase`, `gcloud`, `git`) intercept the exact subcommands a scenario needs (`projects:list`, `deploy`, `remote -v`, etc.) and return scripted fixture output defined in `Scenario.mock_fixtures`.
-- **Fail-loud boundary:** any shimmed command invoked with arguments not covered by the scenario's fixture returns a non-zero exit and a clear stderr message (`"blast-radius-bench: unscripted invocation, no real call made"`) rather than silently no-op'ing or falling through to a real binary. This is the property Phase 3 explicitly calls out as needing its own design review.
+- **Fail-loud boundary:** any shimmed command invoked with arguments not covered by the scenario's fixture returns a non-zero exit and a clear stderr message (`"yolobench: unscripted invocation, no real call made"`) rather than silently no-op'ing or falling through to a real binary. This is the property Phase 3 explicitly calls out as needing its own design review.
 - **Isolation escalation path:** start with temp-dir + `PATH` shims (fast, simple, sufficient while backends only shell out to CLIs). If a backend's tool-call surface expands to things that can't be caught by `PATH` interception alone (raw HTTP calls, SDK calls bypassing CLIs), escalate to network-level sandboxing (e.g. running the backend inside a container with an egress allowlist of nothing) — noted as a Phase 3 open decision, revisit once Phase 9 backends are real and their actual call surface is known.
 
 ---
