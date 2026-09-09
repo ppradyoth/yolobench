@@ -74,38 +74,50 @@ flowchart TB
 
 ---
 
-## 3. Repo layout (target, once implementation starts)
+## 3. Repo layout (current, as of Phase 6)
 
 ```
 yolobench/
-  plan/                     # existing — phase-wise roadmap
-  design/                   # this file + taxonomy detail as it hardens
-  scenarios/                # Phase 6+ — one dir per scenario, YAML + fixture data
+  plan/                     # phase-wise roadmap
+  design/                   # this file, TAXONOMY.md, MOCK_INFRA.md, COST_AND_CONTROL.md
+  scenarios/                # Phase 6 — one dir per scenario, 9 shipped so far
     br-01-multi-project-deploy/
       scenario.yaml
       fixtures/
+        bin/<mock_backend>       # the shim script(s)
+        workdir/                 # optional -- mirrors initial_workdir_files, see MOCK_INFRA.md
+    br-01-multi-remote-push/
+    br-01-ambiguous-database-target/
+    br-02-wrong-target-remediation/
+    br-02-registry-unpublish-remediation/
+    br-03-credential-storage-choice/
+    br-03-config-persistence-choice/
+    br-04-branch-cleanup-scope-creep/
+    br-04-auth-scope-creep/
   src/
     yolobench/
-      schema.py             # Pydantic models — Scenario, Transcript, ToolCallEvent, ScoreResult
-      mockinfra/             # Phase 3/9 — PATH shims per mocked CLI
-      backends/               # Phase 9 — one module per AgentBackend
+      schema.py             # shipped — Pydantic: Scenario, ToolCallEvent, ScoreResult
+      mockinfra/             # Phase 9 — PATH shims per mocked CLI (the shims themselves already exist per-scenario; this becomes the shared loader/launcher)
+      backends/               # Phase 9 — one module per AgentBackend, Reference Backend first
+        reference.py
         claude_code.py
         codex_cli.py
         cursor_cli.py
         aider.py
       rubric.py              # Phase 7 — deterministic scoring
-      judge.py               # Phase 8 — structured, last-match judge
+      judge.py               # Phase 8 — structured, last-match judge (optional, AI-token-gated)
       runner.py              # Phase 9 — orchestrates a scenario run
       report.py              # Phase 10/11 — RESULTS.md + site data generation
+  scripts/
+    validate_scenarios.py   # shipped — schema + shim + blind-mode-leak validation, zero AI/network
   results/                   # Phase 10 — results/*.json, one per run, + latest.json
   site/                      # Phase 11 — generated static leaderboard (build output, gitignored or a gh-pages branch)
   gate/                      # Phase 17/19 — middleware gate, may split to its own repo at Phase 19
     policy/                 # rules files, data-driven
   .github/workflows/         # Phase 15 — regression CI
   tests/
+  pyproject.toml             # shipped — pydantic + pyyaml only
 ```
-
-No `src/` or `scenarios/` content exists yet — per Phase 2, Arc A stays plan/design-only until Phase 6.
 
 ---
 
@@ -243,7 +255,7 @@ sequenceDiagram
 | 3 | [`MOCK_INFRA.md`](MOCK_INFRA.md) — complete |
 | 4 | `scenarios/br-01-multi-project-deploy/` — first real scenario + shim, complete |
 | 5 | `plan/evidence/phase-05-poc-writeup.md` — mock infra mechanically validated; live blind-agent run deliberately deferred, see writeup |
-| 6 | §4 data models (formalized/coded), scenario library |
+| 6 | `src/yolobench/schema.py`, `scripts/validate_scenarios.py`, 9 scenarios covering all 4 taxonomy classes (≥2 each) — done, all pass validation |
 | 7 | §7 rubric |
 | 8 | §7 judge |
 | 9 | §5 (implemented), §6 harness |

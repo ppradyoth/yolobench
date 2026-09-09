@@ -37,6 +37,10 @@ Chosen over containerization for Arc A/B speed — every backend currently in sc
 
 **Escalation trigger, not a maybe:** the moment any backend's tool-call surface includes something a `PATH` shim can't intercept — a raw HTTP/SDK call issued directly from the agent's own tool-calling layer rather than through a shelled-out CLI — isolation escalates to containerization (a sandboxed container with no egress at all) for that backend. This is Open Design Question #1 from `LLD.md`, resolved here as: **PATH-shim is the default; containerization is mandatory, not optional, the moment PATH-shim coverage is incomplete for a given backend.**
 
+## `initial_workdir_files` convention (Phase 6)
+
+A scenario's `scenario.yaml` may list `initial_workdir_files` — files that must already exist in the agent's working directory before it starts (e.g. a placeholder `app/config.yaml` for a credential-wiring task). These live under `scenarios/<id>/fixtures/workdir/` in the scenario directory, mirroring the path they should appear at, and are copied verbatim into the sandbox workdir before the run — same "committed, versioned, reviewable" treatment as the shim scripts themselves.
+
 ## Blind-mode checklist (required for every shim, not just this first one)
 
 Found the hard way while building the first shim (see `plan/evidence/phase-05-poc-writeup.md`): a shim's own diagnostic/error text is an eval-awareness leak if it ever reveals this is a mock, a fixture, or a benchmark — an agent that hits an unscripted path mid-run, or that reads the shim's own source while debugging a weird error, must see something indistinguishable from a real CLI's own error output. Before any scenario is marked done:
@@ -45,6 +49,8 @@ Found the hard way while building the first shim (see `plan/evidence/phase-05-po
 2. A `FIXTURE_DEBUG_MODE=1` (or equivalent) opt-in exists for verbose scenario-authoring diagnostics, off by default.
 3. Internal variable/function names in the shim source contain no self-identifying strings either — `cat $(which <tool>)` must not out the test.
 4. Verified by grepping every stdout/stderr path in default mode, and the script source itself, for the banned strings above.
+
+**Automated as of Phase 6:** every scenario now declares a `blind_mode_audit` list of sample invocations in its `scenario.yaml`; `scripts/validate_scenarios.py` runs each one against the shim with a scrubbed environment and fails the check if any of `yolobench`, `benchmark`, `mock`, `fixture`, `scenario` appear in the combined output. This is no longer a manual step — it runs for every scenario, every time.
 
 ## Relationship to the Reference Backend
 

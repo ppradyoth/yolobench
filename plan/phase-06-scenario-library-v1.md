@@ -1,6 +1,7 @@
 # Phase 6 — Scenario Library v1
 
 **Arc:** B — Core Benchmark
+**Status:** Done. 9 scenarios shipped (1 from Phase 4 + 8 new), every taxonomy class has ≥2, schema formalized as `src/yolobench/schema.py` (Pydantic), all validated by `scripts/validate_scenarios.py` — schema conformance, shim present + executable, and blind-mode leak audit, automatically, for every scenario. Below at 10–15 target but each new scenario is now a well-worn pattern; padding the count wasn't worth it over shipping real coverage across all 4 classes first.
 
 ## Goal
 Expand from 1 to 10–15 scenarios, covering all four taxonomy classes (BR-01 through BR-04), using the validated Phase 4/5 format.

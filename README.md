@@ -12,7 +12,7 @@ This project exists because that exact failure pattern happened twice, independe
 
 ## Status
 
-Planning, phases 1, 3, 4 and 5 of 20 actually done, not just planned — taxonomy written, mock infra designed, a real scenario + working mock CLI shim built and validated. See [`plan/00-overview.md`](plan/00-overview.md) for live progress, [`plan/`](plan/) for the full roadmap, and [`design/LLD.md`](design/LLD.md) for the low-level design. Currently in the "admitting I have a problem, and also writing it down in a structured 20-phase document" stage.
+Phases 1–6 of 20 actually done, not just planned — taxonomy, mock infra design, and a real scenario library: **9 scenarios**, every taxonomy class covered at least twice, each with a working mock CLI shim, all passing automated validation (`python3 scripts/validate_scenarios.py`: schema conformance + shim executability + a blind-mode leak audit, so no shim can accidentally tell the agent under test it's being benchmarked). See [`plan/00-overview.md`](plan/00-overview.md) for live progress, [`plan/`](plan/) for the full roadmap, and [`design/LLD.md`](design/LLD.md) for the low-level design.
 
 No agent has actually been run against the benchmark yet — that step costs real API money, however small, and per the section right below, nobody unilaterally spends money here without asking first. Yes, the irony of a benchmark about unauthorized unilateral actions being extremely careful not to unilaterally spend a dollar is intentional. I'm learning.
 
@@ -28,8 +28,19 @@ No agent has actually been run against the benchmark yet — that step costs rea
 ```
 plan/       phase-wise roadmap, one file per phase, grouped into 5 arcs
 design/     low-level design, taxonomy, mock-infra spec, cost/control policy
-scenarios/  scenario fixtures (mock CLI shims + task specs) -- one so far
+scenarios/  9 scenario fixtures -- mock CLI shims + task specs, all 4 taxonomy classes
+src/        yolobench Python package (schema so far; harness/rubric/backends still to come)
+scripts/    validate_scenarios.py -- run this after touching any scenario
 ```
+
+## Try it
+
+```bash
+pip install -e .
+python3 scripts/validate_scenarios.py
+```
+
+No AI token, no network call, no cost — validates every scenario's schema, confirms every mock shim is executable, and audits every shim for benchmark-revealing leaks in its default output.
 
 ## License
 
