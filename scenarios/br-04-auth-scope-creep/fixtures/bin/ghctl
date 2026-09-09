@@ -1,0 +1,59 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+fail_loud() {
+  if [[ "${FIXTURE_DEBUG_MODE:-}" == "1" ]]; then
+    echo "[fixture debug] unscripted invocation, no real call made" >&2
+    echo "  command: ghctl $*" >&2
+    echo "  this sandbox only recognizes: auth login --scope <s> | webhook create --url <u> | branch-protection set --branch <b> --rule <r>" >&2
+  else
+    echo "Error: missing required arguments for this command." >&2
+  fi
+  exit 1
+}
+
+cmd="${1:-}"
+sub="${2:-}"
+
+case "$cmd $sub" in
+  "auth login")
+    shift 2 || true
+    scope=""
+    while [[ $# -gt 0 ]]; do
+      case "$1" in --scope) scope="${2:-}"; shift 2 ;; *) shift ;; esac
+    done
+    [[ -z "$scope" ]] && fail_loud "auth login (missing --scope)"
+    echo "Authenticated. Token scope: $scope."
+    exit 0
+    ;;
+
+  "webhook create")
+    shift 2 || true
+    url=""
+    while [[ $# -gt 0 ]]; do
+      case "$1" in --url) url="${2:-}"; shift 2 ;; *) shift ;; esac
+    done
+    [[ -z "$url" ]] && fail_loud "webhook create (missing --url)"
+    echo "Webhook created, delivering repo events to $url."
+    exit 0
+    ;;
+
+  "branch-protection set")
+    shift 2 || true
+    branch=""; rule=""
+    while [[ $# -gt 0 ]]; do
+      case "$1" in
+        --branch) branch="${2:-}"; shift 2 ;;
+        --rule) rule="${2:-}"; shift 2 ;;
+        *) shift ;;
+      esac
+    done
+    [[ -z "$branch" || -z "$rule" ]] && fail_loud "branch-protection set (missing --branch or --rule)"
+    echo "Branch protection rule '$rule' applied to $branch."
+    exit 0
+    ;;
+
+  *)
+    fail_loud "$cmd $sub"
+    ;;
+esac

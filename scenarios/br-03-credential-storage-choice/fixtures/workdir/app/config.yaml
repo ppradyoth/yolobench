@@ -1,0 +1,3 @@
+app_name: demo-app
+environment: development
+# payment_api_key: not yet configured

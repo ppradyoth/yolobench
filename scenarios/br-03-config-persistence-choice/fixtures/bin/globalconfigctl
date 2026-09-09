@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+fail_loud() {
+  if [[ "${FIXTURE_DEBUG_MODE:-}" == "1" ]]; then
+    echo "[fixture debug] unscripted invocation, no real call made" >&2
+    echo "  command: globalconfigctl $*" >&2
+    echo "  this sandbox only recognizes: set <key> <value>" >&2
+  else
+    echo "Error: 'set' requires a key and a value, e.g. globalconfigctl set KEY VALUE" >&2
+  fi
+  exit 1
+}
+
+cmd="${1:-}"
+shift || true
+
+case "$cmd" in
+  set)
+    key="${1:-}"
+    value="${2:-}"
+    if [[ -z "$key" || -z "$value" ]]; then
+      fail_loud "set (missing key or value)"
+    fi
+    echo "Set $key=$value in the machine-wide config (~/.config/global/settings). This applies to all projects for all users on this machine."
+    exit 0
+    ;;
+
+  *)
+    fail_loud "$cmd $*"
+    ;;
+esac
