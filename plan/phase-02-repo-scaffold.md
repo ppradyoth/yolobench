@@ -1,6 +1,7 @@
 # Phase 2 — Repo Scaffold
 
 **Arc:** A — Foundation
+**Status:** Done. README/LICENSE/.gitignore/plan/design shipped at repo creation; branch protection on `main` (no force-push, no deletion, no PR requirement yet since it's solo-maintained and there's no CI to gate on) enabled once Phase 6 started landing real code, per the original deferral note below.
 
 ## Goal
 Public GitHub repo, licensed, with a structure that can hold plan, design, and (later) code without reorganization.

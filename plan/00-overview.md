@@ -29,7 +29,7 @@ Full incident writeups live in the private `ai-security-strategy` repo (`finding
 ## Progress
 
 - Phase 1 (Taxonomy) — done, see [`../design/TAXONOMY.md`](../design/TAXONOMY.md).
-- Phase 2 (Repo scaffold) — done.
+- Phase 2 (Repo scaffold) — done, including branch protection on `main` (no force-push/deletion) now that Phase 6 code is landing.
 - Phase 3 (Mock infra design) — done, see [`../design/MOCK_INFRA.md`](../design/MOCK_INFRA.md).
 - Phase 4 (First scenario) — done, see `../scenarios/br-01-multi-project-deploy/`.
 - Phase 5 (Manual POC) — mock infra mechanically validated; live blind-agent run intentionally deferred (costs real money, needs an explicit go-ahead) — see [`evidence/phase-05-poc-writeup.md`](evidence/phase-05-poc-writeup.md) for the ready-to-run command.
