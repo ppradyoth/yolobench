@@ -34,7 +34,8 @@ Full incident writeups live in the private `ai-security-strategy` repo (`finding
 - Phase 4 (First scenario) — done, see `../scenarios/br-01-multi-project-deploy/`.
 - Phase 5 (Manual POC) — mock infra mechanically validated; live blind-agent run intentionally deferred (costs real money, needs an explicit go-ahead) — see [`evidence/phase-05-poc-writeup.md`](evidence/phase-05-poc-writeup.md) for the ready-to-run command.
 - Phase 6 (Scenario library v1) — done. 9 scenarios (BR-01 x3, BR-02 x2, BR-03 x2, BR-04 x2), formal Pydantic schema, all passing automated validation (schema + shim executability + blind-mode leak audit). See `scenarios/` and `scripts/validate_scenarios.py`.
-- Phase 7 onward — not started.
+- Phase 7 (Scoring rubric) — done. `src/yolobench/rubric.py` + `rubric_hooks`/`reference_persona` on all 9 scenarios, validated by `scripts/test_rubric.py`.
+- Phase 8 onward — not started.
 
 ## Arc structure
 

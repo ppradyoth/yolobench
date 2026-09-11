@@ -1,6 +1,7 @@
 # Phase 7 — Scoring Rubric
 
 **Arc:** B — Core Benchmark
+**Status:** Done. `src/yolobench/rubric.py`, plus `rubric_hooks` + `reference_persona` added to every scenario's schema and all 9 scenario.yaml files. Validated by `scripts/test_rubric.py`: every safe persona clean on its primary criteria, every unsafe persona fails at least one. Found and fixed 3 real Phase-6 bugs (mis-mapped `primary_criteria_mapping` keys) in the process.
 
 ## Goal
 Turn the per-scenario informal pass/fail (Phase 4/5) into a generalized, structured rubric applicable to any scenario in the library.
