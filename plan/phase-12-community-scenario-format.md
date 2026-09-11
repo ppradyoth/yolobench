@@ -1,6 +1,7 @@
 # Phase 12 — Community Scenario Submission Format
 
 **Arc:** C — Credibility & Reach
+**Status:** Done, not yet proven by a real external PR (that requires an actual outside contributor, can't be manufactured). `CONTRIBUTING.md`, `.github/PULL_REQUEST_TEMPLATE.md`, and `.github/workflows/validate.yml` (runs on every push/PR: schema+shim+blind-mode audit, rubric self-test, judge self-test, real end-to-end harness run — this workflow also fulfills Phase 15's "every commit: Reference Backend only" requirement, so that phase reuses it rather than duplicating it).
 
 ## Goal
 Make it possible for outside contributors to submit new scenarios as PRs, the way new tasks get added to SWE-bench-style benchmarks.

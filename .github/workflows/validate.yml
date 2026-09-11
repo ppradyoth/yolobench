@@ -1,0 +1,39 @@
+name: validate
+
+# Runs on every push and PR against every scenario. Zero AI, zero network
+# calls, zero cost -- the Reference Backend only, per
+# design/COST_AND_CONTROL.md #4 ("every commit: Reference Backend only").
+# This is also Phase 12's contribution-PR gate: a new scenario that fails
+# any of these does not merge.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch: {}
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install
+        run: pip install -e .
+
+      - name: Validate scenario schema, shims, blind-mode leaks
+        run: python3 scripts/validate_scenarios.py
+
+      - name: Rubric self-test (persona data, no subprocess)
+        run: python3 scripts/test_rubric.py
+
+      - name: Judge self-test (T-14 adversarial resistance, fake client)
+        run: python3 scripts/test_judge.py
+
+      - name: Reference Backend end-to-end (real sandbox + subprocess)
+        run: python3 scripts/run_reference_benchmark.py
