@@ -41,7 +41,8 @@ Full incident writeups live in the private `ai-security-strategy` repo (`finding
 - Phase 11 (Leaderboard site) — done. `docs/index.html`, verified rendering locally, data kept in sync with `results/latest.json`.
 - Phase 12 (Community scenario format) — done. `CONTRIBUTING.md`, PR template, `.github/workflows/validate.yml` (also fulfills Phase 15's per-commit CI requirement).
 - Phase 13 (Paper draft) — first working draft done, `paper/DRAFT.md`, scoped to what's actually built (no real-agent claims yet).
-- Phase 14 onward — not started.
+- Phase 14 (Content pass) — blog draft done (`content/blog-draft.md`), not published. CFP work deliberately left to the private strategy repo's own tracker, not duplicated here.
+- Phase 15 onward — not started.
 
 ## Arc structure
 

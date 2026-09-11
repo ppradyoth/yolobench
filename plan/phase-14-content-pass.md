@@ -1,6 +1,7 @@
 # Phase 14 — Content Pass (Blog + CFPs)
 
 **Arc:** C — Credibility & Reach
+**Status:** Blog draft done (`content/blog-draft.md`), written in-voice, grounded in the real incidents and real results already in this repo. Not published anywhere — publishing to an external platform needs your explicit go-ahead, not a default action. CFP submissions deliberately NOT drafted here: your CFP/conference tracker with deadlines and targets lives in the private `ai-security-strategy` repo and shouldn't be duplicated into this public one. Cross-reference this project against that tracker yourself, or ask me to when working in that repo.
 
 ## Goal
 Turn the benchmark + results + leaderboard into talk submissions and a blog post, using the existing CFP tracker and target list already maintained in the private strategy repo.
