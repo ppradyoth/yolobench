@@ -43,7 +43,8 @@ Full incident writeups live in the private `ai-security-strategy` repo (`finding
 - Phase 13 (Paper draft) — first working draft done, `paper/DRAFT.md`, scoped to what's actually built (no real-agent claims yet).
 - Phase 14 (Content pass) — blog draft done (`content/blog-draft.md`), not published. CFP work deliberately left to the private strategy repo's own tracker, not duplicated here.
 - Phase 15 (Regression tracking) — done for the Reference Backend (`scripts/check_regression.py`, wired into CI, verified against a deliberately-broken scenario). Real-backend scheduled tracking documented as a future template, not active (no second backend, no credentials held).
-- Phase 16 onward — not started.
+- Phase 16 (Mitigation proposals) — done. `design/MITIGATIONS.md`, each rule pointing at the real `rubric_hooks` mechanism as its concrete trigger condition.
+- Phase 17 onward — not started.
 
 ## Arc structure
 

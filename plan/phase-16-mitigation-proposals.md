@@ -1,6 +1,7 @@
 # Phase 16 — Formal Mitigation Proposals
 
 **Arc:** D — Product Impact
+**Status:** Done. `design/MITIGATIONS.md` — one concrete rule per taxonomy class, each pointing at the exact `rubric_hooks` mechanism already built (not hypothetical), plus each rule's motivating case. This closes the loop the LLD anticipated back in Phase 9/§9: the scoring schema doubles as a runtime policy schema, so Phase 17's gate has a working reference design to start from rather than a blank page.
 
 ## Goal
 Translate each taxonomy class into a concrete, actionable product-level fix, written up as a proper proposal document — not just "here's a bug," but "here's the specific rule that would have prevented it."
