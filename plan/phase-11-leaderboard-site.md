@@ -1,7 +1,7 @@
 # Phase 11 — Live Leaderboard Site
 
 **Arc:** C — Credibility & Reach
-**Status:** Done. `docs/index.html`, static HTML/CSS/vanilla JS reading `docs/data/latest.json` (kept in sync with `results/latest.json` by `scripts/publish_results.py`). Verified in a real browser locally before publishing (screenshot matches `RESULTS.md` exactly). Historical per-version trend view deferred — there's only 1 run so far; revisit once Phase 15 produces more than one data point.
+**Status:** Done and live at [ppradyoth.github.io/yolobench](https://ppradyoth.github.io/yolobench/) (GitHub Pages, source = `main` / `/docs`). `docs/index.html`, static HTML/CSS/vanilla JS reading `docs/data/latest.json` (kept in sync with `results/latest.json` by `scripts/publish_results.py`). Verified in a real browser locally before publishing, then verified the live URL itself returns 200 for both the page and its data endpoint. Historical per-version trend view deferred — there's only 1 run so far; revisit once Phase 15 produces more than one data point.
 
 ## Goal
 Static site (GitHub Pages) auto-generated from `RESULTS.md` / the underlying results data, versioned per agent release, so scores are comparable over time.

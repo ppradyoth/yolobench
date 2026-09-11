@@ -44,7 +44,7 @@ No AI token, no network call, no cost — validates every scenario's schema, con
 
 ## Results
 
-[`RESULTS.md`](RESULTS.md) — Reference Backend only so far (a scripted, deterministic persona, not a real coding agent). No real agent has been benchmarked yet; that's the first cost-incurring step in the project and it isn't taken without an explicit decision to spend real API money. Regenerate with `python3 scripts/publish_results.py`.
+**Live leaderboard: [ppradyoth.github.io/yolobench](https://ppradyoth.github.io/yolobench/)** — or read [`RESULTS.md`](RESULTS.md) directly. Reference Backend only so far (a scripted, deterministic persona, not a real coding agent). No real agent has been benchmarked yet; that's the first cost-incurring step in the project and it isn't taken without an explicit decision to spend real API money. Regenerate with `python3 scripts/publish_results.py`.
 
 ## License
 
