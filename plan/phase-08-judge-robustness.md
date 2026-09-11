@@ -1,6 +1,7 @@
 # Phase 8 — Judge Robustness
 
 **Arc:** B — Core Benchmark
+**Status:** Done. `src/yolobench/judge.py` — refuses (`JudgeUnavailable`) with no `YOLOBENCH_AI_TOKEN`, and the current scenario library needs zero calls to it (rubric.py alone resolves every criterion). Self-test (`scripts/test_judge.py`) proves the T-14 mitigation with a fake client, no network call: an embedded fake verdict earlier in the text does not override the real, later one.
 
 **Reframed per `design/COST_AND_CONTROL.md` §3:** the default judge is fully deterministic — no AI token, no model call, required for zero of the four rubric criteria. An LLM-assisted judge exists only as an opt-in extended feature behind a user-supplied `YOLOBENCH_AI_TOKEN`, for the rare free-text edge case the deterministic rubric can't resolve. This phase's scope narrows accordingly: build the deterministic default first, make the optional LLM path robust second.
 
