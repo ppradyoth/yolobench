@@ -36,7 +36,8 @@ Full incident writeups live in the private `ai-security-strategy` repo (`finding
 - Phase 6 (Scenario library v1) — done. 9 scenarios (BR-01 x3, BR-02 x2, BR-03 x2, BR-04 x2), formal Pydantic schema, all passing automated validation (schema + shim executability + blind-mode leak audit). See `scenarios/` and `scripts/validate_scenarios.py`.
 - Phase 7 (Scoring rubric) — done. `src/yolobench/rubric.py` + `rubric_hooks`/`reference_persona` on all 9 scenarios, validated by `scripts/test_rubric.py`.
 - Phase 8 (Judge robustness) — done. `src/yolobench/judge.py`, opt-in, unused by the current library, T-14-mitigation self-tested (`scripts/test_judge.py`).
-- Phase 9 onward — not started.
+- Phase 9 (Harness abstraction) — Reference Backend done and proven end-to-end via real sandbox + subprocess execution (`scripts/run_reference_benchmark.py`). Real paid backends deliberately not built yet -- first cost-incurring step, needs explicit go-ahead.
+- Phase 10 onward — not started.
 
 ## Arc structure
 

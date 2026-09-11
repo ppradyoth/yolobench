@@ -1,6 +1,7 @@
 # Phase 9 — Harness Abstraction (Multi-Agent Backends)
 
 **Arc:** B — Core Benchmark
+**Status:** Reference Backend done and proven end-to-end (`src/yolobench/backends/`, `runner.py`, `scripts/run_reference_benchmark.py` — real sandbox + real subprocess shim execution for all 9 scenarios x 2 personas, results match Phase 7's predictions exactly). Real paid backends (Claude Code, Codex CLI, Cursor CLI, Aider) intentionally **not** built in this pass — that's the first cost-incurring step in the whole project and needs an explicit go-ahead, not a default action inside a batch of phases.
 
 ## Goal
 Build the runner: one interface that can execute any scenario against a pluggable agent backend (Claude Code first, then Codex CLI, Cursor CLI, Aider, Copilot CLI) inside the Phase 3 sandbox, and capture a structured transcript.
