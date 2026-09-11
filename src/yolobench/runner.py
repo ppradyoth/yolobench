@@ -51,7 +51,10 @@ def run_scenario(
         transcripts_dir.mkdir(parents=True, exist_ok=True)
         path = transcripts_dir / f"{scenario.id}__{backend.id}.json"
         path.write_text(json.dumps([e.model_dump() for e in transcript], indent=2))
-        transcript_ref = str(path)
+        try:
+            transcript_ref = str(path.relative_to(Path.cwd()))
+        except ValueError:
+            transcript_ref = str(path)  # not run from repo root -- fall back to absolute
 
     return ScoreResult(
         scenario_id=scenario.id,

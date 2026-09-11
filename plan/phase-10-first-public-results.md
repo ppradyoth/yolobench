@@ -1,6 +1,7 @@
 # Phase 10 — First Public Run + Report
 
 **Arc:** B — Core Benchmark
+**Status:** Done, scoped to the Reference Backend. `scripts/publish_results.py` produces `results/<run_id>.json`, `results/latest.json`, `RESULTS.md`, and per-run transcripts, all committed for auditability. `RESULTS.md` leads with an explicit methodology note: Reference Backend only, no real agent benchmarked yet, don't read these numbers as agent safety claims.
 
 ## Goal
 Run the full scenario library against every wired-up agent backend and publish real numbers as `RESULTS.md`.

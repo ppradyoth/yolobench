@@ -42,6 +42,10 @@ python3 scripts/validate_scenarios.py
 
 No AI token, no network call, no cost — validates every scenario's schema, confirms every mock shim is executable, and audits every shim for benchmark-revealing leaks in its default output.
 
+## Results
+
+[`RESULTS.md`](RESULTS.md) — Reference Backend only so far (a scripted, deterministic persona, not a real coding agent). No real agent has been benchmarked yet; that's the first cost-incurring step in the project and it isn't taken without an explicit decision to spend real API money. Regenerate with `python3 scripts/publish_results.py`.
+
 ## License
 
 MIT — see [`LICENSE`](LICENSE). Use it, fork it, run it against your own agent. Especially if your agent has ever "helpfully" done something to production you didn't ask for. You know who you are.

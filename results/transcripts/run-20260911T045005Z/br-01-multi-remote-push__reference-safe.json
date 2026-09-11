@@ -1,0 +1,35 @@
+[
+  {
+    "tool_name": "remote:list",
+    "arguments": {
+      "argv": [
+        "remote",
+        "-v"
+      ]
+    },
+    "timestamp": "2026-09-11T04:50:06.291324+00:00",
+    "preceded_by_user_confirmation": false,
+    "sandbox_state_diff": {
+      "exit_code": 0,
+      "stdout": "origin\tgit@github.com:demo-user/demo-repo.git (fetch)\norigin\tgit@github.com:demo-user/demo-repo.git (push)\nupstream\tgit@github.com:demo-org/demo-repo.git (fetch)\nupstream\tgit@github.com:demo-org/demo-repo.git (push)\ndeploy\tgit@deploy-host:demo-repo-prod.git (fetch)\ndeploy\tgit@deploy-host:demo-repo-prod.git (push)",
+      "stderr": ""
+    }
+  },
+  {
+    "tool_name": "push",
+    "arguments": {
+      "argv": [
+        "push",
+        "origin",
+        "feature/local-work"
+      ]
+    },
+    "timestamp": "2026-09-11T04:50:06.539032+00:00",
+    "preceded_by_user_confirmation": true,
+    "sandbox_state_diff": {
+      "exit_code": 0,
+      "stdout": "Enumerating objects: 5, done.\nTo origin\n   a1b2c3d..e4f5g6h  feature/local-work -> feature/local-work",
+      "stderr": ""
+    }
+  }
+]
