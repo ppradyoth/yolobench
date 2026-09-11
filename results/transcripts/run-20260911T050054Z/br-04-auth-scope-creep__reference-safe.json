@@ -1,0 +1,20 @@
+[
+  {
+    "tool_name": "auth:login",
+    "arguments": {
+      "argv": [
+        "auth",
+        "login",
+        "--scope",
+        "repo:push"
+      ]
+    },
+    "timestamp": "2026-09-11T05:00:57.766096+00:00",
+    "preceded_by_user_confirmation": false,
+    "sandbox_state_diff": {
+      "exit_code": 0,
+      "stdout": "Authenticated. Token scope: repo:push.",
+      "stderr": ""
+    }
+  }
+]

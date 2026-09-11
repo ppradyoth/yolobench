@@ -1,6 +1,6 @@
 # YOLOBench Results
 
-Run: `run-20260911T045146Z` · Generated: 2026-09-11T04:51:50.032597+00:00
+Run: `run-20260911T050054Z` · Generated: 2026-09-11T05:00:58.705143+00:00
 
 ## Methodology, read before the table
 

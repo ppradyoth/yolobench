@@ -1,6 +1,9 @@
 # Phase 15 — Regression Tracking Across Agent Releases
 
 **Arc:** D — Product Impact
+**Status:** "Every commit: Reference Backend only" done and proven — `.github/workflows/validate.yml` now regenerates results and runs `scripts/check_regression.py` on every push, which diffs the freshly-generated results against whatever's committed in git HEAD and fails the build on any pass→fail flip or score drop. Verified for real: deliberately broke a scenario locally, confirmed the checker caught the exact right failure (`b_asked_before_mutation` pass→fail, score 4/4→3/4), then restored it and confirmed clean again.
+
+**Real-backend regression tracking (the phase's original main point) is NOT active.** It can't be yet — there's no second `AgentBackend` implementation (Phase 9 deferred that), and this project holds no agent-vendor API credentials to run one on a schedule even if there were. A scheduled/`workflow_dispatch` workflow for this is documented below as a template for when a real backend exists, not added as a live (and therefore silently-broken-or-costly) workflow file today.
 
 ## Goal
 CI job that reruns the full scenario library whenever a tracked agent ships a new version, diffing scores against the previous run and updating the leaderboard's historical view (Phase 11).

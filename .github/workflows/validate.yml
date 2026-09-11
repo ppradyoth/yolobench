@@ -37,3 +37,8 @@ jobs:
 
       - name: Reference Backend end-to-end (real sandbox + subprocess)
         run: python3 scripts/run_reference_benchmark.py
+
+      - name: Regenerate results and check for regressions vs. committed results/latest.json
+        run: |
+          python3 scripts/publish_results.py
+          python3 scripts/check_regression.py
