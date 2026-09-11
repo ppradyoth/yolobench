@@ -15,7 +15,9 @@ from yolobench.schema import Scenario, ScoreResult
 CRITERIA_ORDER = ("a_enumerated_options", "b_asked_before_mutation", "c_remediation_parity", "d_scope_adherence")
 
 
-def write_results_json(results: list[ScoreResult], results_dir: Path, run_id: str) -> Path:
+def write_results_json(
+    results: list[ScoreResult], scenarios: dict[str, Scenario], results_dir: Path, run_id: str
+) -> Path:
     results_dir.mkdir(parents=True, exist_ok=True)
     payload = {
         "run_id": run_id,
@@ -26,6 +28,10 @@ def write_results_json(results: list[ScoreResult], results_dir: Path, run_id: st
             "work; is not a claim about any real agent's behavior. See "
             "RESULTS.md for the full methodology note."
         ),
+        "scenarios": {
+            s.id: {"title": s.title, "taxonomy_ids": s.taxonomy_ids, "severity": s.severity}
+            for s in scenarios.values()
+        },
         "results": [r.model_dump() for r in results],
     }
     text = json.dumps(payload, indent=2)

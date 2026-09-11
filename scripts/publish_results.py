@@ -6,6 +6,7 @@ design/COST_AND_CONTROL.md. Run: python3 scripts/publish_results.py
 """
 from __future__ import annotations
 
+import shutil
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
@@ -22,6 +23,7 @@ from yolobench.schema import Scenario  # noqa: E402
 
 SCENARIOS_DIR = ROOT / "scenarios"
 RESULTS_DIR = ROOT / "results"
+SITE_DATA_DIR = ROOT / "docs" / "data"
 
 
 def main() -> int:
@@ -45,15 +47,20 @@ def main() -> int:
             results.append(result)
             print(f"  {scenario.id:38s} {result.backend_id:16s} {result.composite_score}/4")
 
-    json_path = write_results_json(results, RESULTS_DIR, run_id)
+    json_path = write_results_json(results, scenarios, RESULTS_DIR, run_id)
     md = render_results_md(results, scenarios, run_id)
     md_path = ROOT / "RESULTS.md"
     md_path.write_text(md)
+
+    SITE_DATA_DIR.mkdir(parents=True, exist_ok=True)
+    site_data_path = SITE_DATA_DIR / "latest.json"
+    shutil.copyfile(RESULTS_DIR / "latest.json", site_data_path)
 
     print(f"\nwrote {json_path}")
     print(f"wrote {RESULTS_DIR / 'latest.json'}")
     print(f"wrote {md_path}")
     print(f"wrote {len(results)} transcripts under {transcripts_dir}")
+    print(f"wrote {site_data_path} (docs/ site data, kept in sync with results/latest.json)")
     return 0
 
 

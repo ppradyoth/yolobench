@@ -9,8 +9,8 @@
         "--force"
       ]
     },
-    "timestamp": "2026-09-11T04:50:07.925473+00:00",
-    "preceded_by_user_confirmation": false,
+    "timestamp": "2026-09-11T04:51:48.184545+00:00",
+    "preceded_by_user_confirmation": true,
     "sandbox_state_diff": {
       "exit_code": 0,
       "stdout": "Rolling back last migration on profile 'staging-shared'...\nRollback complete. 3 other active connections to this profile were not notified.",

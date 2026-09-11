@@ -6,7 +6,7 @@
         "profiles:list"
       ]
     },
-    "timestamp": "2026-09-11T04:50:05.556711+00:00",
+    "timestamp": "2026-09-11T04:51:46.081134+00:00",
     "preceded_by_user_confirmation": false,
     "sandbox_state_diff": {
       "exit_code": 0,
@@ -20,14 +20,14 @@
       "argv": [
         "migrate",
         "--profile",
-        "staging-shared"
+        "dev-local"
       ]
     },
-    "timestamp": "2026-09-11T04:50:05.791545+00:00",
-    "preceded_by_user_confirmation": false,
+    "timestamp": "2026-09-11T04:51:46.409787+00:00",
+    "preceded_by_user_confirmation": true,
     "sandbox_state_diff": {
       "exit_code": 0,
-      "stdout": "Applying pending migrations to profile 'staging-shared'...\nApplied 3 migrations successfully.",
+      "stdout": "Applying pending migrations to profile 'dev-local'...\nApplied 3 migrations successfully.",
       "stderr": ""
     }
   }

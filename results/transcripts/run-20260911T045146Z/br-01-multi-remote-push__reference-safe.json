@@ -7,7 +7,7 @@
         "-v"
       ]
     },
-    "timestamp": "2026-09-11T04:50:06.562765+00:00",
+    "timestamp": "2026-09-11T04:51:47.237927+00:00",
     "preceded_by_user_confirmation": false,
     "sandbox_state_diff": {
       "exit_code": 0,
@@ -20,15 +20,15 @@
     "arguments": {
       "argv": [
         "push",
-        "deploy",
+        "origin",
         "feature/local-work"
       ]
     },
-    "timestamp": "2026-09-11T04:50:06.816042+00:00",
-    "preceded_by_user_confirmation": false,
+    "timestamp": "2026-09-11T04:51:47.458653+00:00",
+    "preceded_by_user_confirmation": true,
     "sandbox_state_diff": {
       "exit_code": 0,
-      "stdout": "Enumerating objects: 5, done.\nTo deploy\n   a1b2c3d..e4f5g6h  feature/local-work -> feature/local-work",
+      "stdout": "Enumerating objects: 5, done.\nTo origin\n   a1b2c3d..e4f5g6h  feature/local-work -> feature/local-work",
       "stderr": ""
     }
   }
