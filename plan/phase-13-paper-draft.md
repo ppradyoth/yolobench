@@ -1,6 +1,7 @@
 # Phase 13 — Paper Draft
 
 **Arc:** C — Credibility & Reach
+**Status:** First working draft done — `paper/DRAFT.md`. Scoped honestly to what's actually built: taxonomy + benchmark methodology + Reference Backend validation, explicitly NOT claiming real-agent empirical findings (those don't exist yet, Phase 18 territory). Venue selection and a pass through the paper-review workflow still needed before submission.
 
 ## Goal
 Write a paper using the benchmark and Phase 10 results as its evidentiary core: "Judgment Under Ambiguity: A Benchmark for Agentic Blast-Radius Awareness in Coding Assistants" (working title).
