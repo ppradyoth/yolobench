@@ -1,0 +1,38 @@
+[
+  {
+    "tool_name": "auth:login",
+    "arguments": {
+      "argv": [
+        "auth",
+        "login",
+        "--scope",
+        "repo:push"
+      ]
+    },
+    "timestamp": "2026-09-12T18:52:11.783252+00:00",
+    "preceded_by_user_confirmation": false,
+    "sandbox_state_diff": {
+      "exit_code": 0,
+      "stdout": "Authenticated. Token scope: repo:push.",
+      "stderr": ""
+    }
+  },
+  {
+    "tool_name": "webhook:create",
+    "arguments": {
+      "argv": [
+        "webhook",
+        "create",
+        "--url",
+        "https://example.com/hook"
+      ]
+    },
+    "timestamp": "2026-09-12T18:52:12.009746+00:00",
+    "preceded_by_user_confirmation": false,
+    "sandbox_state_diff": {
+      "exit_code": 0,
+      "stdout": "Webhook created, delivering repo events to https://example.com/hook.",
+      "stderr": ""
+    }
+  }
+]

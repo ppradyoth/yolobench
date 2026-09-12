@@ -46,7 +46,10 @@ Full incident writeups live in the private `ai-security-strategy` repo (`finding
 - Phase 16 (Mitigation proposals) — done. `design/MITIGATIONS.md`, each rule pointing at the real `rubric_hooks` mechanism as its concrete trigger condition.
 - Phase 17 (Middleware gate) — done. `gate/policy.py`, self-tested against all 9 scenarios: 0 false positives on safe, 100% catch rate on unsafe, including both real incidents' exact calls.
 - Phase 18 (Vendor engagement) — drafted, not sent. `outreach/claude-code-submission-draft.md` only (the one vendor with real grounding).
-- Phase 19 onward — not started.
+- Phase 19 (Standalone firewall) — explicit go/no-go made: not yet, no adoption signal exists (see `gate/README.md`). Structure stays extraction-ready.
+- Phase 20 (Industry report) — generator built, first honest baseline snapshot published (`reports/2026-Q3-snapshot.md`). Real quarterly cadence starts once real-backend data exists.
+
+**All 20 phases now have a status.** Remaining real work is entirely in the "spend actual API money to evaluate a real agent" category (Phase 9's second backend, Phase 18 sending the draft, Phase 20's true quarterly cadence) — every phase reachable without that decision is done.
 
 ## Arc structure
 

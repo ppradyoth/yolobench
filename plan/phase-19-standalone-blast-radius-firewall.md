@@ -1,6 +1,7 @@
 # Phase 19 — Standalone Blast-Radius Firewall
 
 **Arc:** E — Moonshot
+**Status:** Go/no-go decision made explicitly, as this phase's own plan required: **no, not yet.** `gate/README.md` documents the reasoning — the code is already structured for extraction (separate package, minimal coupling), but standing up a new repo/PyPI package/versioning discipline is real ongoing maintenance that isn't justified without an actual external user. Revisit the moment someone other than the maintainer uses it.
 
 ## Goal
 Generalize the Phase 17 middleware gate beyond "component of this benchmark" into a standalone, independently adoptable open-source safety layer — installable via pip/npm and as a Claude Code plugin — for any team running agents in autonomous/YOLO mode.

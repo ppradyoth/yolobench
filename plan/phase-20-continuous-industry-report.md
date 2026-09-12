@@ -1,6 +1,7 @@
 # Phase 20 — Continuous Industry Report
 
 **Arc:** E — Moonshot
+**Status:** Generator built (`scripts/generate_industry_report.py`), first snapshot published (`reports/2026-Q3-snapshot.md`). Honestly labeled "Snapshot #1, a baseline, not a trend" rather than faking a quarterly cadence that hasn't happened yet — the acceptance criterion ("two consecutive quarterly reports on schedule") genuinely can't be met by working "quickly," it needs real time and real data to pass. Cadence explicitly set to "ad hoc until real-backend data exists, quarterly after" rather than a fixed calendar with nothing new to say each time.
 
 ## Goal
 A recurring (quarterly) "State of Agentic Blast-Radius Safety" report across every major coding agent, auto-generated from the Phase 15 regression pipeline, aiming to become a reference document the way OWASP Top 10 became one for web security — scoped specifically to agentic coding tools.
