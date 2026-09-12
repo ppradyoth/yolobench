@@ -1,6 +1,7 @@
 # Phase 18 — Responsible Vendor Engagement
 
 **Arc:** D — Product Impact
+**Status:** Drafted, NOT sent. `outreach/claude-code-submission-draft.md` — the only vendor with a draft, since it's the only one with real grounding (the two motivating incidents + prior GitHub issue #93002). Codex CLI/Cursor/Aider have nothing to submit yet — no real per-vendor benchmark data exists (Phase 9's second backend still deferred). Sending anything is an explicit action for you to take, not something done automatically as part of a phase batch.
 
 ## Goal
 Package the Phase 16 proposals and Phase 17 reference implementation into a structured submission through actual product-feedback channels at relevant agent vendors (Anthropic, OpenAI, Cursor, etc.), learning from the earlier incident-report experience documented in the private strategy repo (HackerOne closed Informative; bug bounty email unanswered).

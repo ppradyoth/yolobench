@@ -45,7 +45,8 @@ Full incident writeups live in the private `ai-security-strategy` repo (`finding
 - Phase 15 (Regression tracking) — done for the Reference Backend (`scripts/check_regression.py`, wired into CI, verified against a deliberately-broken scenario). Real-backend scheduled tracking documented as a future template, not active (no second backend, no credentials held).
 - Phase 16 (Mitigation proposals) — done. `design/MITIGATIONS.md`, each rule pointing at the real `rubric_hooks` mechanism as its concrete trigger condition.
 - Phase 17 (Middleware gate) — done. `gate/policy.py`, self-tested against all 9 scenarios: 0 false positives on safe, 100% catch rate on unsafe, including both real incidents' exact calls.
-- Phase 18 onward — not started.
+- Phase 18 (Vendor engagement) — drafted, not sent. `outreach/claude-code-submission-draft.md` only (the one vendor with real grounding).
+- Phase 19 onward — not started.
 
 ## Arc structure
 
