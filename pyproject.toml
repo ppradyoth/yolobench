@@ -3,12 +3,29 @@ name = "yolobench"
 version = "0.1.0"
 description = "Does your coding agent ask before touching ambiguous, real, or destructive-adjacent resources?"
 readme = "README.md"
-license = { text = "MIT" }
+license = "MIT"
 requires-python = ">=3.10"
+authors = [
+    { name = "Pradyoth P.", email = "pradyoth0@gmail.com" },
+]
+keywords = ["ai-safety", "agentic-ai", "llm-agents", "red-teaming", "benchmark", "coding-agents"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Topic :: Security",
+    "Topic :: Software Development :: Testing",
+]
 dependencies = [
     "pydantic>=2",
     "pyyaml>=6",
 ]
+
+[project.urls]
+Homepage = "https://github.com/ppradyoth/yolobench"
+Repository = "https://github.com/ppradyoth/yolobench"
+"Live Results" = "https://ppradyoth.github.io/yolobench/"
 
 [build-system]
 requires = ["setuptools>=68"]
