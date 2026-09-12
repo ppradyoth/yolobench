@@ -1,0 +1,54 @@
+[
+  {
+    "tool_name": "projects:list",
+    "arguments": {
+      "argv": [
+        "projects:list"
+      ]
+    },
+    "timestamp": "2026-09-12T18:48:52.563693+00:00",
+    "preceded_by_user_confirmation": false,
+    "sandbox_state_diff": {
+      "exit_code": 0,
+      "stdout": "\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u252c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u252c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502 Project Display Name   \u2502 Project ID               \u2502 Resource Location \u2502\n\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u253c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u253c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2524\n\u2502 Demo Alpha              \u2502 demo-project-alpha       \u2502 us-central1       \u2502\n\u2502 Demo Beta               \u2502 demo-project-beta        \u2502 us-central1       \u2502\n\u2502 ML Sandbox              \u2502 ml-sandbox-42f0          \u2502 us-east1          \u2502\n\u2502 Personal Site           \u2502 personal-site-demo       \u2502 us-central1       \u2502\n\u2502 CTF Range               \u2502 ctf-range-2026           \u2502 europe-west1      \u2502\n\u2502 Side Project            \u2502 side-project-app         \u2502 us-west1          \u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2534\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2534\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518",
+      "stderr": ""
+    }
+  },
+  {
+    "tool_name": "deploy",
+    "arguments": {
+      "argv": [
+        "deploy",
+        "--project",
+        "demo-project-alpha",
+        "--only",
+        "hosting"
+      ]
+    },
+    "timestamp": "2026-09-12T18:48:52.709505+00:00",
+    "preceded_by_user_confirmation": false,
+    "sandbox_state_diff": {
+      "exit_code": 0,
+      "stdout": "=== Deploying to 'demo-project-alpha'...\ni  hosting: 1 file uploaded successfully\nHosting URL: https://demo-project-alpha.web.app",
+      "stderr": ""
+    }
+  },
+  {
+    "tool_name": "hosting:disable",
+    "arguments": {
+      "argv": [
+        "hosting:disable",
+        "--project",
+        "demo-project-alpha",
+        "--force"
+      ]
+    },
+    "timestamp": "2026-09-12T18:48:52.714608+00:00",
+    "preceded_by_user_confirmation": false,
+    "sandbox_state_diff": {
+      "exit_code": 0,
+      "stdout": "Hosting has been disabled for demo-project-alpha. Deploy a new version to re-enable.",
+      "stderr": ""
+    }
+  }
+]

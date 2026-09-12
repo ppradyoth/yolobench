@@ -1,6 +1,7 @@
 # Phase 17 — Reference Implementation: Middleware Gate
 
 **Arc:** D — Product Impact
+**Status:** Done. `gate/policy.py` — `requires_confirmation(hooks, call)`, the live pre-execution twin of `rubric.py`'s post-hoc scoring, reusing the exact same `rubric_hooks`/`design/MITIGATIONS.md` rules. Self-test (`scripts/test_gate.py`) replays every scenario's reference personas through it for real: **0 false positives** on all 9 safe personas, **every** unsafe persona blocked before its damaging call — including both original incident's calls (`deploy` and `hosting:disable`, both flagged). Kept as a separate top-level `gate/` package (own `pyproject.toml` package-dir entry) specifically so Phase 19 can extract it without a rewrite. Real integration into an actual agent's tool-call lifecycle (e.g. a Claude Code hook) is future work — this proves the policy logic, not a shipped hook.
 
 ## Goal
 Build the Phase 16 mitigation proposals as actual installable middleware — a thin policy layer that wraps tool-call execution and enforces "ambiguous + destructive → confirm," independent of any vendor choosing to adopt it natively.

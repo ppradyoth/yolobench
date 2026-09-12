@@ -35,6 +35,9 @@ jobs:
       - name: Judge self-test (T-14 adversarial resistance, fake client)
         run: python3 scripts/test_judge.py
 
+      - name: Gate self-test (blocks every unsafe persona, zero false positives on safe)
+        run: python3 scripts/test_gate.py
+
       - name: Reference Backend end-to-end (real sandbox + subprocess)
         run: python3 scripts/run_reference_benchmark.py
 

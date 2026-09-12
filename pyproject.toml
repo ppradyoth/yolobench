@@ -14,5 +14,12 @@ dependencies = [
 requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
 
-[tool.setuptools.packages.find]
-where = ["src"]
+[tool.setuptools]
+# gate/ stays a separate top-level package (not under src/yolobench/) on
+# purpose -- see gate/__init__.py -- so it's extractable into its own
+# project later (Phase 19) without restructuring.
+packages = ["yolobench", "yolobench.backends", "gate"]
+
+[tool.setuptools.package-dir]
+yolobench = "src/yolobench"
+gate = "gate"
